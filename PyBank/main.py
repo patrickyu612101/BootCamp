@@ -1,7 +1,7 @@
 import os
 import csv
 
-cereal_csv = os.path.join("Resources", "budget_data.csv")
+budget_data = os.path.join("Resources", "budget_data.csv")
 total_month=0
 total_Revenue=0
 maxN=0
@@ -12,7 +12,7 @@ averageAll=0
 averageCount=0
 previous=0
 # Open and read csv
-with open(cereal_csv, newline="") as csvfile:
+with open(budget_data, newline="") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
     # Read the header row first (skip this part if there is no header)

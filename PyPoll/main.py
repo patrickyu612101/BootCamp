@@ -1,24 +1,31 @@
 import os
 import csv
+import pandas as pd
 
-cereal_csv = os.path.join("Resources", "election_data.csv")
-totalVote=0
-listCandidate=[]
-listvotes=[]
 
-# Open and read csv
-with open(cereal_csv, newline="") as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=",")
+election_data = os.path.join("Resources", "election_data.csv")
+#pdFile= pd.read.csv(election_data,"encoding="ISO-8859-1")
+pdFile= pd.read_csv(election_data)  #read the data with pandas
+total=pdFile["Voter ID"].count()    # get total votes
 
-    # Read the header row first (skip this part if there is no header)
-    csv_header = next(csvfile)
-    print(f"Header: {csv_header}")
-    for row in csvreader:
-        totalVote=totalVote+1
+listCandidate= pdFile["Candidate"].unique()   #get candidates with votes
+len=listCandidate.size  #get size of candidates
+print(len)
+listvotes=pdFile["Candidate"].value_counts() # also use this to calculate
+winner=""
+winnervote=0
 
-     #   print(row)
 
 print("Election Results")
 print("------------")
-print("Total votes: "+str(totalVote))
+print("Total votes: "+str(total))
+print("------------")
+i = 0
+for i in range(len) :
+    percent= listvotes[i]/total *100
+    percent=percent.round()
+    print(listCandidate[i]+" : "+str(listvotes[i])+" votes  ("+str(percent)+"%)")
+    i=i+1
+print("------------")
+print("Winner is : "+ winner)
 print("------------")
