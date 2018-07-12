@@ -5,7 +5,9 @@ cereal_csv = os.path.join("Resources", "budget_data.csv")
 total_month=0
 total_Revenue=0
 maxN=0
+maxdate=""
 minN=0
+mindate=""
 averageAll=0
 averageCount=0
 previous=0
@@ -27,9 +29,10 @@ with open(cereal_csv, newline="") as csvfile:
         
         if (int(row[1])-previous)>maxN: # get max and min number from change
             maxN=int(row[1])-previous
+            maxdate=row[0]
         elif (int(row[1])-previous)<minN:
             minN = int(row[1])-previous
-        
+            mindate=row[0]
         previous = int(row[1])  #save the value for next run of loop to get the previous value
 
 
@@ -37,6 +40,6 @@ print("The total moth is : "+str(total_month))
 print("The total revenue is : "+str(total_Revenue))
 #print(str(averageAll))
 print("The Average Change is : "+str(averageAll/averageCount))
-print("The max change is: "+str(maxN))
-print("The min change is : "+str(minN))
+print("The Greatest increase is at "+maxdate+" : "+str(maxN))
+print("The Greatest decrease is at "+mindate+" : "+str(minN))
 
