@@ -21,11 +21,15 @@ print("------------")
 print("Total votes: "+str(total))
 print("------------")
 i = 0
-for i in range(len) :
-    percent= listvotes[i]/total *100
+for i in range(len) :   #test range is only in how much candidate, 
+    percent= listvotes[i]/total *100    #find the percent
     percent=percent.round()
-    print(listCandidate[i]+" : "+str(listvotes[i])+" votes  ("+str(percent)+"%)")
-    i=i+1
+    if listvotes[i]>winnervote: #find the winner 
+        winnervote=listvotes[i]
+        winner = listCandidate[i]
+
+    print(listCandidate[i]+" : "+str(listvotes[i])+" votes  ("+str(percent)+"%)")   #print the result by use the same index so I can add string between
+
 print("------------")
 print("Winner is : "+ winner)
 print("------------")
